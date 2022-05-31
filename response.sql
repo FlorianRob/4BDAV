@@ -68,12 +68,23 @@ CREATE TABLE DET (
   desc PRO 
 
   desc FOU 
-  
+ 
+INSERT INTO CLI VALUES (1, 'BIGGY','Monaco',0781474747,'Monaco','Monaco','Monegasque'); 
 INSERT INTO CLI VALUES (2, 'Bob', 'France', 0677225874, 'Toulouse', 'Haute-Garonne', 'Français');
+INSERT INTO COM VALUES (1, (SELECT NumCli FROM CLI WHERE NumCli = 1), 3, 2019, 'Cheque-55euro');
 INSERT INTO COM VALUES (2, (SELECT NumCli FROM CLI WHERE NumCli = 2), 501, 2011, 'Carte');
+INSERT INTO FOU VALUES (1, 'ZIPETTE', 'Italie', 0606060606);
 INSERT INTO FOU VALUES (2, 'Intel', 'France', 0722481945);
-INSERT INTO PRO VALUES (2, (SELECT NumFou FROM FOU WHERE NumFou = 2), 'Liquid', 'France', 15);
+INSERT INTO PRO VALUES (1, (SELECT NumFou FROM FOU WHERE NumFou = 1), 'Hydrogen', 'Gaz', 250);
+INSERT INTO PRO VALUES (2, (SELECT NumFou FROM FOU WHERE NumFou = 2), 'Liquid', 'Gaz', 15);
+INSERT INTO DET VALUES ((SELECT NumCom FROM Com WHERE NumCom = 1), (SELECT NumPro FROM Pro WHERE NumPro = 1), 10, 11);
 INSERT INTO DET VALUES ((SELECT NumCom FROM Com WHERE NumCom = 2), (SELECT NumPro FROM Pro WHERE NumPro = 2), 12, 25);
 
 -- 5. Vider toutes vos tables. Y a-t-il un ordre à respecter ? Si oui, pourquoi ?
 -- Oui, il y a un ordre à respecter afin de ne pas casser les foreign keys.
+
+DROP TABLE CLI
+DROP TABLE COM
+DROP TABLE FOU
+DROP TABLE PRO
+DROP TABLE DET
