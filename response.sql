@@ -88,3 +88,9 @@ DROP TABLE COM
 DROP TABLE FOU
 DROP TABLE PRO
 DROP TABLE DET
+
+
+-- Exercice 2 
+
+
+-- 5. On retrouve 7 Tables : Countries, Departments, Employees, Job_History, Jobs, Locations, Regions
