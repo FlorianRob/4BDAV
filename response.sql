@@ -1,5 +1,49 @@
 --2. Créer les relations de la base ci-dessus (avec toutes les clés primaires et étrangères).
+-- Création de la base de donnée
 
+CREATE TABLE CLI (
+    NumCli integer PRIMARY KEY,
+    NomCli varchar(30),
+    Pays varchar(30),
+    Tel integer,
+    Ville varchar(30),
+    Dept varchar(30),
+    Nat varchar(30)
+);
+
+CREATE TABLE COM (
+    NumCom integer PRIMARY KEY,
+    NumCli integer,
+    FOREIGN KEY (NumCli) REFERENCES CLI(NumCli),
+    FraisPort integer,
+    AnCom number(4),
+    Payement varchar(30)
+);
+
+CREATE TABLE FOU (
+    NumFou integer PRIMARY KEY,
+    NomFou varchar(30),
+    Pays varchar(30),
+    Tel integer
+);
+
+CREATE TABLE PRO (
+    NumPro integer PRIMARY KEY,
+    NumFou integer,
+    FOREIGN KEY (NumFou) REFERENCES FOU(NumFou),
+    NomPro varchar(30),
+    TypePro varchar(30),
+    PrixUnit integer
+);
+
+CREATE TABLE DET (
+    NumCom integer,
+    FOREIGN KEY (NumCom) REFERENCES COM(NumCom),
+    NumPro integer,
+    FOREIGN KEY (NumPro) REFERENCES PRO(NumPro),
+    Qte integer,
+    Remise integer
+);
 
 
 -- 3. Y a-t-il un ordre à respecter lors de la création de ces tables, si oui lequel ? Pourquoi ? 
