@@ -74,3 +74,6 @@ INSERT INTO COM VALUES (2, (SELECT NumCli FROM CLI WHERE NumCli = 2), 501, 2011,
 INSERT INTO FOU VALUES (2, 'Intel', 'France', 0722481945);
 INSERT INTO PRO VALUES (2, (SELECT NumFou FROM FOU WHERE NumFou = 2), 'Liquid', 'France', 15);
 INSERT INTO DET VALUES ((SELECT NumCom FROM Com WHERE NumCom = 2), (SELECT NumPro FROM Pro WHERE NumPro = 2), 12, 25);
+
+-- 5. Vider toutes vos tables. Y a-t-il un ordre à respecter ? Si oui, pourquoi ?
+-- Oui, il y a un ordre à respecter afin de ne ma casser les foreign keys.
