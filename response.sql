@@ -115,7 +115,7 @@ Select FIRST_NAME, LAST_NAME, HIRE_DATE from employees;
 
 -- Day 2
 
-Exercice 1
+-- Exercice 1
 
 DECLARE
     nb_countries int; -- nombre de pays
