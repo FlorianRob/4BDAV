@@ -94,3 +94,13 @@ DROP TABLE DET
 
 
 -- 5. On retrouve 7 Tables : Countries, Departments, Employees, Job_History, Jobs, Locations, Regions
+
+-- Exercice 3
+
+
+-- 1. Select FIRST_NAME, LAST_NAME, COMMISSION_PCT, DEPARTMENT_ID, HIRE_DATE, SALARY from employees 
+--    where commission_pct is not null and salary between '10000' and '15000' and hire_date <= '05/06/2005';
+-- 2. Select department_id, AVG(salary), MEDIAN(salary), MIN(salary), MAX(salary) from employees group by department_id;
+-- 3. Select job_title, AVG(min_salary + max_salary)/2, MEDIAN(min_salary + max_salary)from jobs group by job_title;
+-- 4. Select * from employees where job_id like 'IT%' and salary >= '6461';
+-- 5. Select FIRST_NAME, LAST_NAME, HIRE_DATE from employees;
