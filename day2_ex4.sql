@@ -15,6 +15,20 @@ sommeSalaires := sommeSalaires + salairePilote;
 END LOOP;
 moyenneSalaires := sommeSalaires / curseur1%ROWCOUNT;
 CLOSE curseur1;
-DBMS_OUTPUT.PUT_LINE('Moyenne salaires (pilotes de 45 à 55 ans) : ' || moyenneSalaires);
+DBMS_OUTPUT.PUT_LINE('Moyenne salaires (pilotes de 45 Ã  55 ans) : ' || moyenneSalaires);
+END;
+/
+
+DECLARE
+    
+    matriculePilote int := 15874;
+    salairePilote Pilote.Salaire%type;
+
+BEGIN
+
+    SELECT Pilote.salaire INTO salairePilote FROM pilote WHERE matricule = matriculePilote;
+    salairePilote := salairePilote * 12;
+    DBMS_OUTPUT.PUT_LINE('Salaire annuel du matricule '|| matriculepilote || ' : ' || salairePilote);
+
 END;
 /
