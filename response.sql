@@ -1,3 +1,5 @@
+-- Day 1
+
 --2. Créer les relations de la base ci-dessus (avec toutes les clés primaires et étrangères).
 -- Création de la base de donnée
 
@@ -109,3 +111,113 @@ Select job_title, AVG(min_salary + max_salary)/2, MEDIAN(min_salary + max_salary
 Select * from employees where job_id like 'IT%' and salary >= '6461';
 -- 5. 
 Select FIRST_NAME, LAST_NAME, HIRE_DATE from employees;
+
+
+-- Day 2
+
+Exercice 1
+
+DECLARE
+    nb_countries int; -- nombre de pays
+    nb_departments int; -- nombre de departements
+    nb_employees int; -- nombre d'employees
+    nb_jobhitory int; -- nombre de job history
+    nb_jobs int; -- nombre de jobs
+    nb_locations int; -- nombre d'adresse
+    nb_regions int; -- nombre de regions
+    
+    nb_manager int; -- nombre de manager
+    propman int; -- Proportion de managers
+
+BEGIN
+    SELECT count(*) INTO nb_countries FROM countries;
+    DBMS_OUTPUT.PUT_LINE('nombre de pays : '||nb_countries);
+    SELECT count(*) INTO nb_departments FROM departments;
+    DBMS_OUTPUT.PUT_LINE('nombre de departements : '||nb_departments);
+    SELECT count(*) INTO nb_employees FROM employees;
+    DBMS_OUTPUT.PUT_LINE('nombre d''employees : '||nb_employees);
+    SELECT count(*) INTO nb_jobhitory FROM job_history;
+    DBMS_OUTPUT.PUT_LINE('nombre de job history : '||nb_jobhitory);
+    SELECT count(*) INTO nb_jobs FROM jobs;
+    DBMS_OUTPUT.PUT_LINE('nombre de jobs : '||nb_jobs);
+    SELECT count(*) INTO nb_locations FROM locations;
+    DBMS_OUTPUT.PUT_LINE('nombre d''adresse : '||nb_locations);
+    SELECT count(*) INTO nb_regions FROM regions;
+    DBMS_OUTPUT.PUT_LINE('nombre de regions : '||nb_regions);
+    
+   SELECT COUNT(*) INTO nb_manager FROM employees
+   WHERE employees.job_id LIKE '%MGR' OR employees.job_id LIKE '%MAN';
+   DBMS_OUTPUT.PUT_LINE('nb manager : '||nb_manager);
+   
+   propman := 100 * nb_manager / nb_employees;
+    DBMS_OUTPUT.PUT_LINE('pourcentage de manager : '||propman||'%');
+
+END;
+/
+
+-- Exercice 2 
+
+SELECT table_name,num_rows FROM all_tables WHERE owner = 'HR';
+
+
+-- Exercice 3 
+
+-- Création table VOL
+
+CREATE TABLE VOL (
+    Idvol varchar(20) PRIMARY KEY,
+    Date_heure_depart datetime,
+    Date_heure_arrivee datetime,
+    Ville_depart varchar(30),
+    Ville_arrivee varchar(30)
+);
+
+-- Écrire un programme qui permet d'insérer le vol BA270 partant de Rome à 10h15 et arrivant
+-- à Paris à 12h15
+
+
+DECLARE
+v vol%ROWTYPE;
+BEGIN
+v.Idvol := 'BA270';
+v.Date_heure_depart := to_date('01/06/2022 10:15', 'DD/MM/YYYY hh24:mi');
+v.Date_heure_arrivee := to_date('01/06/2022 12:15', 'DD/MM/YYYY hh24:mi');
+v.Ville_depart := 'Rome';
+v.Ville_arrivee := 'Paris';
+INSERT INTO vol VALUES v;
+END;
+/
+
+-- Exercice 4
+
+-- Création table
+
+CREATE TABLE PILOTE (
+    Matricule integer PRIMARY KEY,
+    Nom varchar(30),
+    Ville varchar(30),
+    Age int,
+    Salaire int
+);
+
+
+--1. Écrire un programme permettant de calculer la moyenne des salaires des pilotes dont l’âge est entre 45 et 55 ans
+
+DECLARE
+ CURSOR curseur1 IS SELECT salaire FROM pilote
+ WHERE (Age >= 45 AND Age <=55);
+ salairePilote Pilote.Salaire%TYPE;
+ sommeSalaires NUMBER(11,2) := 0;
+ moyenneSalaires NUMBER(11,2);
+BEGIN
+OPEN curseur1;
+LOOP
+FETCH curseur1 INTO salairePilote;
+EXIT WHEN (curseur1%NOTFOUND OR curseur1%NOTFOUND IS NULL);
+sommeSalaires := sommeSalaires + salairePilote;
+END LOOP;
+moyenneSalaires := sommeSalaires / curseur1%ROWCOUNT;
+CLOSE curseur1;
+DBMS_OUTPUT.PUT_LINE('Moyenne salaires (pilotes de 45 <E0> 55 ans) : ' || moyenneSalaires);
+END;
+/
