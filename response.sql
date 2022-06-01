@@ -97,6 +97,7 @@ DROP TABLE DET
 
 -- 5. On retrouve 7 Tables : Countries, Departments, Employees, Job_History, Jobs, Locations, Regions
 
+
 -- Exercice 3
 
 
@@ -111,6 +112,38 @@ Select job_title, AVG(min_salary + max_salary)/2, MEDIAN(min_salary + max_salary
 Select * from employees where job_id like 'IT%' and salary >= '6461';
 -- 5. 
 Select FIRST_NAME, LAST_NAME, HIRE_DATE from employees;
+
+
+-- Exercice 4
+
+
+--1. 
+--2.
+--3.
+--4. Proposer un modèle logique (MLD) pour cette application
+
+--# => clés étrangères 
+--! => clés primaires
+--Hotel (!NumH, NomH, AdresseH, CodePostalH, TelH, #Nbretoile)
+
+--Clients (!CodeClient, Nom, Prenom, Adresse, Ville, CodePostal, Pays, Tel, Email)
+
+--Reservations (!NumReservation , DateDebut, DateFin, DatePayeArrhes, MontantArrhes, #Numchambre, #Codeclient )
+
+--Chambres (!NumChambre, TelCh, NumH, #CodeCategorie)
+
+--Classe (!Nbretoile)
+
+--Categories (!CodeCat, Description)
+
+--Consommations (!NumConsommation, DateConsommation, HeureConsommation, #Codeclient)
+
+--Prestations (!CodePrest, DesignationPrest)
+
+--Tarif (!#CodeCat, #Nbretoile, TarifUnitaire)
+
+--Offre (!#CodePrest, !#NumH, PrixPrest)
+
 
 
 -- Day 2
