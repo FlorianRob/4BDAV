@@ -5,3 +5,7 @@ Robache Florian - Barlier Charles
 
 Toutes les réponses sont dans le fichier response.sql dans /All
 Les images et les fichiers docx sont dans les répertoires Day1 et Day2
+
+
+Day 4
+Screens et lignes de commandes MongoDB dans le répertoire Day4
